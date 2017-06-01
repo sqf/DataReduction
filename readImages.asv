@@ -1,0 +1,23 @@
+function [A, T] = readImages(folderName, numberOfInputImages, numOfFolders)
+%READIMAGES Summary of this function goes here
+%   Detailed explanation goes here
+
+% A - macierz zawierajaca zwektoryzowane obrazy
+A = zeros(10304,numberOfInputImages * numOfFolders);
+% T - wektor przechowujacy klasy poszczegolnych obrazow
+T = zeros(1, numberOfInputImages * numOfFolders);
+
+for j=1:numOfFolders
+    for i=1:numberOfInputImages
+        path = strcat(folderName, num2str(j), '/',num2str(i),'.pgm');
+
+        b = imread(path);
+        imageId = i + (j-1)*numberOfInputImages;
+        A(:, imageId) = reshape(b,1,numel(b)); 
+        % oznaczenie klasy obrazu
+        T(1,imageId) = j;
+    end
+end
+
+end
+
