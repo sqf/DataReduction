@@ -27,4 +27,9 @@ cvmdllossR = kfoldLoss(cvmodelR);
 
 
 % wynik klasyfikacji
-%AccMeasure(T,idx)
+
+idxR = kmeans(X',numOfFolders);
+AccMeasure(T,idxR)
+
+idx = kmeans(A,numOfFolders);
+AccMeasure(T,idx)
